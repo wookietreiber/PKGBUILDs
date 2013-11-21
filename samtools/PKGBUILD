@@ -1,0 +1,57 @@
+# Contributor: Markus Heuser <markus.heuser@web.de
+# Maintainer: Thiago Yukio Kikuchi Oliveira <stratust@gmail.com>
+
+pkgname=samtools
+pkgver=0.1.19
+pkgrel=1
+pkgdesc="Efficient utilities on manipulating alignments in the SAM format."
+arch=("x86_64")
+url="http://samtools.sourceforge.net/"
+license=('MIT')
+depends=('perl' 'zlib')
+
+source=(http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver.tar.bz2)
+md5sums=(ff8b46e6096cfb452003b1ec5091d86a)
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+  make CXXFLAGS=-fPIC CFLAGS=-fPIC CPPFLAGS=-fPIC
+
+ 
+  # Install main program executable
+  install -d "$pkgdir/usr/bin/"
+  install -m755 samtools "$pkgdir/usr/bin"
+
+  # Install bcftools
+  cd bcftools
+  for f in $(ls -l)
+  do
+    if [ -x "$f" ]; then
+      install -m755 "$f" "$pkgdir/usr/bin"
+    fi
+  done
+ 
+  # Install misc stuff
+  
+  cd $srcdir/$pkgname-$pkgver/misc
+  for f in $(ls -l)
+  do
+    if [ -x "$f" ]; then
+      install -m755 "$f" "$pkgdir/usr/bin"
+    fi
+  done
+
+  cd $srcdir/$pkgname-$pkgver
+  # Install libbam.a in /usr/local/lib (needed by tophat)
+  install -d "$pkgdir/usr/local/lib"
+  install libbam.a "$pkgdir/usr/local/lib"
+
+
+  # Install headers in /usr/local/include/bam (needed by tophat)
+  install -d "$pkgdir/usr/local/include/bam"
+  for f in *.h
+  do
+      install "$f" "$pkgdir/usr/local/include/bam"
+  done
+
+}
