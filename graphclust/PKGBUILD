@@ -14,7 +14,8 @@ md5sums=('e8a2a0ad87a36accc0bbcfac09b4ff78')
 build() {
   cd "$srcdir/GraphClust-$pkgver"
 
-  ./configure --prefix=/usr --disable-static
+  ./configure --prefix=/usr \
+              --disable-static
 
   make
 }
