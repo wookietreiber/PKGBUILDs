@@ -65,5 +65,5 @@ package() {
   find "$pkgdir"/usr/{lib32/pkgconfig,include} -type f -exec chmod -x {} +
 
   # cleanup for lib32 package
-  rm -rf "${pkgdir}"/{etc,sbin,usr/bin,usr/{include,share}}
+  rm -rf "$pkgdir"/{etc,sbin,usr/bin,usr/{include,share}}
 }
