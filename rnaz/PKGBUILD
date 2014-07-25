@@ -14,7 +14,7 @@ md5sums=('748dec1d1de7e73d7f42290e51c14052')
 build() {
   cd "$srcdir/RNAz-$pkgver"
 
-  ./configure --prefix=/usr --disable-static
+  ./configure --prefix=/usr
 
   make
 }
