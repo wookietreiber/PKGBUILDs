@@ -2,7 +2,7 @@
 
 pkgname=viennarna2
 pkgver=2.1.7
-pkgrel=1
+pkgrel=2
 pkgdesc="RNA Secondary Structure Prediction and Comparison"
 arch=('i686' 'x86_64')
 url="http://www.tbi.univie.ac.at/RNA/vrna2.html"
