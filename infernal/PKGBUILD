@@ -1,0 +1,43 @@
+# Maintainer: kusakata <shohei atmark kusakata period com>
+
+pkgname=infernal
+pkgver=1.0.2
+pkgrel=1
+pkgdesc='An implementation of covariance models (CMs)'
+arch=('i686' 'x86_64')
+url="http://infernal.janelia.org/"
+license=('GPL3')
+depends=('glibc')
+checkdepends=('perl-perl4-corelibs')
+source=("http://selab.janelia.org/software/infernal/infernal-${pkgver}.tar.gz")
+md5sums=('9f9b4c0d0d741574bd5b1b553a0ba59a')
+
+prepare() {
+  cd "${srcdir}/infernal-${pkgver}"
+
+  sed -e 's|${BINDIR}|$(DESTDIR)${BINDIR}|g' \
+      -e 's|$(BINDIR)|$(DESTDIR)$(BINDIR)|g' \
+    -i Makefile.in
+}
+
+build() {
+  cd "${srcdir}/infernal-${pkgver}"
+
+  ./configure --prefix=/usr
+
+  make
+}
+
+check() {
+   cd "$srcdir/$pkgname-$pkgver"
+
+   make check
+}
+
+package() {
+  cd "${srcdir}/infernal-${pkgver}"
+
+  make DESTDIR="$pkgdir" install
+
+  install -Dm644 Userguide.pdf "${pkgdir}/usr/share/doc/${pkgname}/Userguide.pdf"
+}
