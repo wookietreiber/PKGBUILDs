@@ -14,6 +14,7 @@ source=("http://www.tbi.univie.ac.at/RNA/download.php?id=viennarna-$pkgver"
         'rnafuncs.h.patch')
 md5sums=('15896cbf427d438f4d9f5e716aee3d3d'
          '27c8b313c8c34448cfc91ae846af223d')
+options=(staticlibs)
 
 prepare() {
   cd "$srcdir/ViennaRNA-$pkgver"
@@ -58,4 +59,6 @@ package() {
   mv "$pkgdir"/usr/share/ViennaRNA/bin/* "$pkgdir"/usr/bin
   rmdir "$pkgdir/usr/share/ViennaRNA/bin"
   rm -rf "$pkgdir/usr/lib/perl5/core_perl"
+
+  # TODO swap static for shared libs
 }
