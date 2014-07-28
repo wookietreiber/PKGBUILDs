@@ -2,7 +2,7 @@
 
 pkgname=cmfinder
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc='A Covariance Model Based RNA Motif Finding Algorithm'
 arch=('i686' 'x86_64')
 url="http://bio.cs.washington.edu/yzizhen/CMfinder/"
@@ -23,6 +23,6 @@ package() {
   install -d "$pkgdir/usr/bin"
 
   for file in bin/* ; do
-    install -Dm755 "$file" "$pkgdir/usr/bin/$(basename "$file" .pl)"
+    install -Dm755 "$file" "$pkgdir/usr/bin/$(basename "$file")"
   done
 }
