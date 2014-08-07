@@ -1,7 +1,7 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
 pkgname=vcftools
-pkgver=0.1.12
+pkgver=0.1.12b
 pkgrel=1
 pkgdesc="set of tools written in Perl and C++ for working with VCF files"
 arch=('x86_64' 'i686')
@@ -9,7 +9,7 @@ url="http://vcftools.sourceforge.net/"
 license=('GPL3')
 depends=('perl' 'zlib')
 source=(http://downloads.sourceforge.net/$pkgname/${pkgname}_$pkgver.tar.gz)
-md5sums=(ce0126ceb2a4b9ed76592adb6fbae526)
+md5sums=('662758d1139c138cf5a0239ed99f12c2')
 
 build() {
   cd "$srcdir/${pkgname}_$pkgver"
@@ -25,5 +25,5 @@ package() {
   rmdir "$pkgdir/usr/bin/man1"
 
   install -D -m755 cpp/vcftools "$pkgdir/usr/bin/vcftools"
-  install -D -m644 cpp/vcftools.1.gz "$pkgdir/usr/share/man/man1/vcftools.1.gz"
+  install -D -m644 cpp/vcftools.1 "$pkgdir/usr/share/man/man1/vcftools.1"
 }
