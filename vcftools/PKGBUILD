@@ -2,9 +2,9 @@
 
 pkgname=vcftools
 pkgver=0.1.12b
-pkgrel=1
+pkgrel=2
 pkgdesc="set of tools written in Perl and C++ for working with VCF files"
-arch=('x86_64' 'i686')
+arch=('x86_64')
 url="http://vcftools.sourceforge.net/"
 license=('GPL3')
 depends=('perl' 'zlib')
