@@ -22,28 +22,11 @@ prepare() {
   cd "$srcdir/$pkgname-$pkgver"
 
   patch -p1 -i "$srcdir/system-htslib.patch"
-
-  # sed -i 's?/software/bin/python?/usr/bin/python2?' misc/varfilter.py
-
-  # sed -e 's?include $(HTSDIR)/htslib.mk??g' \
-  #     -e 's?$(HTSLIB)??g' \
-  #     -e 's?check test: samtools $(BGZIP)?check test: samtools?' \
-  #     -e 's?$(BGZIP)?/usr/bin/bgzip?g' \
-  #     -e 's?$(HTSDIR)/htslib/kfunc.h??g' \
-  #     -e 's?$(HTSDIR)/htslib/khash.h??g' \
-  #     -e 's?$(HTSDIR)/htslib/khash_str2int.h??g' \
-  #     -e 's?$(HTSDIR)/htslib/klist.h??g' \
-  #     -e 's?$(HTSDIR)/htslib/kseq.h??g' \
-  #     -e 's?$(HTSDIR)/htslib/ksort.h??g' \
-  #     -e 's?$(HTSDIR)/htslib/kstring.h??g' \
-  #     -i Makefile
 }
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"
 
-  # CXXFLAGS=-fPIC CFLAGS=-fPIC CPPFLAGS=-fPIC
-  # make HTSDIR="/usr/include" HTSLIB="/usr/lib/libhts.so" BGZIP="/usr/bin/bgzip" LDLIBS="-lhts"
   make LDLIBS="-lhts"
 }
 
