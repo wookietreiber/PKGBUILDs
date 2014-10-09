@@ -1,0 +1,28 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=bowtie
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="ultrafast memory-efficient short read aligner"
+arch=('i686' 'x86_64')
+url="https://github.com/BenLangmead/bowtie"
+license=('custom')
+depends=('bash' 'python')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/BenLangmead/bowtie/archive/v$pkgver.tar.gz")
+md5sums=('a4ca44fc166d1b44cc222b005077aa32')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+
+  for file in bowtie-inspect-l bowtie-inspect-s bowtie-align-l bowtie-align-s bowtie-build-l bowtie-build-s bowtie-inspect bowtie-build bowtie scripts/*.pl scripts/*.sh ; do
+    install -Dm755 $file $pkgdir/usr/bin/$(basename $file)
+  done
+
+  install -Dm644 LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
+}
