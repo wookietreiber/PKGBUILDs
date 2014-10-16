@@ -1,0 +1,26 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=phyml
+pkgver=20140926
+pkgrel=1
+pkgdesc="Phylogenetic estimation using (Maximum) Likelihood"
+arch=('i686' 'x86_64')
+url="https://github.com/stephaneguindon/phyml/"
+license=('GPL2')
+depends=('glibc')
+source=("https://github.com/stephaneguindon/phyml-downloads/releases/download/development/phyml-$pkgver.tar.gz")
+md5sums=('32665f152899bfccc27830d72efef41f')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+
+  ./configure --prefix=/usr
+
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+
+  make DESTDIR="$pkgdir" install
+}
