@@ -1,8 +1,8 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
 pkgname=viennarna2
-pkgver=2.1.7
-pkgrel=2
+pkgver=2.1.8
+pkgrel=1
 pkgdesc="RNA Secondary Structure Prediction and Comparison"
 arch=('i686' 'x86_64')
 url="http://www.tbi.univie.ac.at/RNA/vrna2.html"
@@ -10,26 +10,9 @@ license=('custom')
 depends=('gri' 'tcsh')
 conflicts=('viennarna')
 install='viennarna2.install'
-source=("http://www.tbi.univie.ac.at/RNA/download.php?id=viennarna-$pkgver"
-        'rnafuncs.h.patch')
-md5sums=('15896cbf427d438f4d9f5e716aee3d3d'
-         '27c8b313c8c34448cfc91ae846af223d')
+source=("$pkgname-$pkgver.tar.gz::http://www.tbi.univie.ac.at/RNA/download.php?id=viennarna-$pkgver")
+md5sums=('3e47c546857bb18a6f49271250cfde95')
 options=(staticlibs)
-
-prepare() {
-  cd "$srcdir/ViennaRNA-$pkgver"
-
-  # fixes typedef problem
-  patch -p1 -i "$srcdir/rnafuncs.h.patch"
-
-  # fixes check-recursive
-  echo "check:" >> "RNAforester/g2-0.70/Makefile.in"
-
-  # fixes install-recursive
-  sed -e 's|$(LIBDIR)|$(DESTDIR)/$(LIBDIR)|g' \
-      -e 's|$(INCDIR)|$(DESTDIR)/$(INCDIR)|g' \
-      -i "RNAforester/g2-0.70/Makefile.in"
-}
 
 build() {
   cd "$srcdir/ViennaRNA-$pkgver"
