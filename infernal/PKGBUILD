@@ -1,7 +1,7 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
 pkgname=infernal
-pkgver=1.0.2
+pkgver=1.1.1
 pkgrel=1
 pkgdesc='An implementation of covariance models (CMs)'
 arch=('i686' 'x86_64')
@@ -10,7 +10,7 @@ license=('GPL3')
 depends=('glibc')
 checkdepends=('perl-perl4-corelibs')
 source=("http://selab.janelia.org/software/infernal/infernal-$pkgver.tar.gz")
-md5sums=('9f9b4c0d0d741574bd5b1b553a0ba59a')
+md5sums=('c5bff318f78c194a0d9b2a6bf1abb169')
 
 prepare() {
   cd "$srcdir/infernal-$pkgver"
@@ -38,4 +38,6 @@ package() {
   cd "$srcdir/infernal-$pkgver"
 
   make DESTDIR="$pkgdir" install
+
+  install -Dm644 Userguide.pdf "${pkgdir}/usr/share/doc/${pkgname}/Userguide.pdf"
 }
