@@ -39,5 +39,5 @@ package() {
 
   make DESTDIR="$pkgdir" install
 
-  install -Dm644 Userguide.pdf "${pkgdir}/usr/share/doc/${pkgname}/Userguide.pdf"
+  install -Dm644 Userguide.pdf "$pkgdir"/usr/share/doc/infernal/Userguide.pdf
 }
