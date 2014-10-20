@@ -1,3 +1,3 @@
 #!/bin/sh
 
-"$JAVA_HOME/bin/java" -jar /usr/share/java/scalastyle/scalastyle-batch_2.10.jar "$@"
+java -jar /usr/share/java/scalastyle/scalastyle_2.11-0.6.0-batch.jar "$@"
