@@ -1,0 +1,40 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=bamtools
+pkgver=2.3.0
+pkgrel=1
+pkgdesc="C++ API & command-line toolkit for working with BAM data"
+arch=('x86_64' 'i686')
+url="https://github.com/pezmaster31/bamtools"
+license=('MIT')
+depends=('gcc-libs' 'zlib')
+makedepends=('cmake')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/pezmaster31/$pkgname/archive/v$pkgver.tar.gz")
+md5sums=('d327df4ba037d6eb8beef65d7da75ebc')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+
+  mkdir -p build
+  cd build
+
+  cmake \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=Release \
+    ..
+
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver/build
+
+  make DESTDIR=$pkgdir install
+
+  install -Dm644 ../LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+  # cleanup dirty install
+  cd $pkgdir/usr/lib
+  mv bamtools/libbam* .
+  rmdir bamtools
+}
