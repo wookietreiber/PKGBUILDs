@@ -10,6 +10,7 @@ license=('custom')
 depends=('bash' 'python')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/BenLangmead/bowtie2/archive/v$pkgver.tar.gz")
 md5sums=('335907efb660b482bc9456ff50982c24')
+conflicts=('bowtie')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
