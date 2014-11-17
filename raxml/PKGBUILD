@@ -2,10 +2,11 @@
 
 pkgname=raxml
 pkgver=8.1.5
-pkgrel=1
+pkgrel=2
 pkgdesc="Randomized Axelerated Maximum Likelihood"
 arch=('i686' 'x86_64')
 url="http://sco.h-its.org/exelixis/web/software/raxml/"
+license=('GPL3')
 depends=('bash' 'perl')
 install='raxml.install'
 source=("$pkgname-$pkgver.tar.gz::https://github.com/stamatak/standard-RAxML/archive/v$pkgver.tar.gz"
