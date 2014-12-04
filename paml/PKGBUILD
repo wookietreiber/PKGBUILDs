@@ -1,0 +1,35 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=paml
+pkgver=4.8
+pkgrel=1
+pkgdesc='Phylogenetic Analysis by Maximum Likelihood'
+arch=('i686' 'x86_64')
+url="http://abacus.gene.ucl.ac.uk/software/paml.html"
+license=('custom')
+depends=('glibc')
+source=("http://abacus.gene.ucl.ac.uk/software/${pkgname}${pkgver}a.tgz")
+md5sums=('868d254709940693a4d4cef86854a3f9')
+
+build() {
+  cd $srcdir/$pkgname$pkgver/src
+
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname$pkgver/src
+
+  install -Dm755 baseml        $pkgdir/usr/bin/baseml
+  install -Dm755 basemlg       $pkgdir/usr/bin/basemlg
+  install -Dm755 chi2          $pkgdir/usr/bin/chi2
+  install -Dm755 codeml        $pkgdir/usr/bin/codeml
+  install -Dm755 evolver       $pkgdir/usr/bin/evolver
+  install -Dm755 infinitesites $pkgdir/usr/bin/infinitesites
+  install -Dm755 mcmctree      $pkgdir/usr/bin/mcmctree
+  install -Dm755 pamp          $pkgdir/usr/bin/pamp
+  install -Dm755 yn00          $pkgdir/usr/bin/yn00
+
+  install -d $pkgdir/usr/share/licenses/$pkgname
+  echo 'public domain' > $pkgdir/usr/share/licenses/$pkgname/LICENSE
+}
