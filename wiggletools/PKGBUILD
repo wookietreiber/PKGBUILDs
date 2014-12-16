@@ -2,14 +2,13 @@
 
 pkgname=wiggletools
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="basic operations on the space of numerical functions defined on the genome using lazy evaluators for flexibility and efficiency"
 arch=('i686' 'x86_64')
 url="https://github.com/Ensembl/WiggleTools"
 license=('Apache')
-depends=(gsl openssl)
+depends=(gsl python2)
 makedepends=(git libmariadbclient libpng unzip)
-checkdepends=(python2)
 source=("$pkgname-$pkgver.tar.gz::https://github.com/Ensembl/WiggleTools/archive/v$pkgver.tar.gz")
 md5sums=('151aa1ccfaacd77183bf2ac053ee18a0')
 
@@ -26,6 +25,9 @@ prepare() {
   sed -e 's|-lgsl|-lgsl -lgslcblas|g' \
       -e 's|-static||g' \
       -i src/Makefile
+
+  sed -e 's|#!/usr/bin/env python|#!/usr/bin/env python2|' \
+      -i parallel/*.py
 }
 
 build() {
@@ -52,4 +54,12 @@ package() {
   cd $srcdir/WiggleTools-$pkgver
 
   install -Dm755 bin/wiggletools $pkgdir/usr/bin/wiggletools
+
+  for pythonscript in bin/*.py ; do
+    install -Dm755 $pythonscript $pkgdir/usr/bin/$(basename $pythonscript .py)
+  done
+
+  for shellscript in bin/*.sh ; do
+    install -Dm755 $shellscript $pkgdir/usr/bin/$(basename $shellscript .sh)
+  done
 }
