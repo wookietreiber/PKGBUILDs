@@ -1,15 +1,15 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
 pkgname=bedtools
-pkgver=2.22.0
-pkgrel=2
+pkgver=2.22.1
+pkgrel=1
 pkgdesc='powerful toolset for genome arithmetic'
 arch=('i686' 'x86_64')
 url="https://github.com/arq5x/bedtools2"
 license=('GPL2')
-depends=('bash' 'gcc-libs' 'zlib')
+depends=('bash' 'zlib')
 source=("https://github.com/arq5x/bedtools2/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
-md5sums=('b5c4289918b71d5c465d1be6977cebb8')
+md5sums=('101c16371e0fd0bb88d55c206e1436d8')
 
 build() {
   cd $srcdir/${pkgname}2
