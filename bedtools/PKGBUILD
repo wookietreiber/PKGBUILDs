@@ -2,14 +2,22 @@
 
 pkgname=bedtools
 pkgver=2.22.1
-pkgrel=1
+pkgrel=2
 pkgdesc='powerful toolset for genome arithmetic'
 arch=('i686' 'x86_64')
 url="https://github.com/arq5x/bedtools2"
 license=('GPL2')
 depends=('bash' 'zlib')
+makedepends=('python2')
 source=("https://github.com/arq5x/bedtools2/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
 md5sums=('101c16371e0fd0bb88d55c206e1436d8')
+
+prepare() {
+  cd $srcdir/${pkgname}2
+
+  sed -e 's|python|python2|' \
+      -i $srcdir/${pkgname}2/Makefile
+}
 
 build() {
   cd $srcdir/${pkgname}2
