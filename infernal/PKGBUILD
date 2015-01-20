@@ -13,7 +13,7 @@ source=("http://selab.janelia.org/software/infernal/infernal-$pkgver.tar.gz")
 md5sums=('c5bff318f78c194a0d9b2a6bf1abb169')
 
 prepare() {
-  cd "$srcdir/infernal-$pkgver"
+  cd $srcdir/infernal-$pkgver
 
   sed -e 's|${BINDIR}|$(DESTDIR)${BINDIR}|g' \
       -e 's|$(BINDIR)|$(DESTDIR)$(BINDIR)|g' \
@@ -21,7 +21,7 @@ prepare() {
 }
 
 build() {
-  cd "$srcdir/infernal-$pkgver"
+  cd $srcdir/infernal-$pkgver
 
   ./configure --prefix=/usr
 
@@ -29,15 +29,15 @@ build() {
 }
 
 check() {
-   cd "$srcdir/infernal-$pkgver"
+   cd $srcdir/infernal-$pkgver
 
    make check
 }
 
 package() {
-  cd "$srcdir/infernal-$pkgver"
+  cd $srcdir/infernal-$pkgver
 
-  make DESTDIR="$pkgdir" install
+  make DESTDIR=$pkgdir install
 
-  install -Dm644 Userguide.pdf "$pkgdir"/usr/share/doc/infernal/Userguide.pdf
+  install -Dm644 Userguide.pdf $pkgdir/usr/share/doc/infernal/Userguide.pdf
 }

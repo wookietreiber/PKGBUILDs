@@ -12,13 +12,13 @@ source=(https://github.com/atextor/icat/archive/v$pkgver.tar.gz)
 md5sums=('29f6901d61cc09d27cef8affb917dd85')
 
 build() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd $srcdir/$pkgname-$pkgver
 
   make
 }
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd $srcdir/$pkgname-$pkgver
 
   install -Dm755 icat $pkgdir/usr/bin/icat
 }

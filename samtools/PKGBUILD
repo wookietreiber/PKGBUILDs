@@ -17,26 +17,26 @@ source=("http://downloads.sourceforge.net/samtools/$pkgver/$pkgname-$pkgver.tar.
 md5sums=('2fadd00aaed2a8359c9d733b3b794b09')
 
 build() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd $srcdir/$pkgname-$pkgver
 
   make LDLIBS="-lhts"
 }
 
 check() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd $srcdir/$pkgname-$pkgver
 
   make check
 }
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd $srcdir/$pkgname-$pkgver
 
-  make DESTDIR="$pkgdir" prefix=/usr install
+  make DESTDIR=$pkgdir prefix=/usr install
 
-  install -d "$pkgdir/usr/include/bam"
-  install -Dm644 "$srcdir/$pkgname-$pkgver"/*.h "$pkgdir/usr/include/bam"
+  install -d $pkgdir/usr/include/bam
+  install -Dm644 $srcdir/$pkgname-$pkgver/*.h $pkgdir/usr/include/bam
 
-  install -Dm644 libbam.a "$pkgdir/usr/lib/libbam.a"
+  install -Dm644 libbam.a $pkgdir/usr/lib/libbam.a
 
-  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
 }

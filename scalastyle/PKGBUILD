@@ -21,6 +21,6 @@ md5sums=('dd8e7e35cfe28fad4467f54e64411aff'
          'SKIP')
 
 package() {
-  install -Dm644 "$srcdir/$_jarname"     "$pkgdir/usr/share/java/scalastyle/$_jarname"
-  install -Dm755 "$srcdir/scalastyle.sh" "$pkgdir/usr/bin/scalastyle"
+  install -Dm644 $srcdir/$_jarname     $pkgdir/usr/share/java/scalastyle/$_jarname
+  install -Dm755 $srcdir/scalastyle.sh $pkgdir/usr/bin/scalastyle
 }

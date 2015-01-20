@@ -12,7 +12,7 @@ source=("http://www.bioinf.uni-freiburg.de/Software/GraphClust/GraphClust-$pkgve
 md5sums=('e8a2a0ad87a36accc0bbcfac09b4ff78')
 
 build() {
-  cd "$srcdir/GraphClust-$pkgver"
+  cd $srcdir/GraphClust-$pkgver
 
   ./configure --prefix=/usr \
               --disable-static
@@ -21,13 +21,13 @@ build() {
 }
 
 check() {
-   cd "$srcdir/GraphClust-$pkgver"
+   cd $srcdir/GraphClust-$pkgver
 
    make check
 }
 
 package() {
-  cd "$srcdir/GraphClust-$pkgver"
+  cd $srcdir/GraphClust-$pkgver
 
-  make DESTDIR="$pkgdir" install
+  make DESTDIR=$pkgdir install
 }

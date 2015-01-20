@@ -13,13 +13,13 @@ source=(https://github.com/GeeckoDev/vcat/archive/$pkgver.tar.gz)
 md5sums=('7982f6d7601fad8b89c178719617c9bf')
 
 build() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd $srcdir/$pkgname-$pkgver
 
   make
 }
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd $srcdir/$pkgname-$pkgver
 
   install -Dm755 vcat $pkgdir/usr/bin/vcat
 }
