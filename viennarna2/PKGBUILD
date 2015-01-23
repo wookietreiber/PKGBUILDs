@@ -23,9 +23,9 @@ build() {
 }
 
 check() {
-   cd $srcdir/ViennaRNA-$pkgver
+  cd $srcdir/ViennaRNA-$pkgver
 
-   make check
+  make check
 }
 
 package() {
