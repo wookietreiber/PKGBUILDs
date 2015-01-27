@@ -1,0 +1,19 @@
+diff -uBw -r SOAPdenovo2-src-r240/sparsePregraph/inc/stdinc.h SOAPdenovo2-src-r240-patched/sparsePregraph/inc/stdinc.h
+--- SOAPdenovo2-src-r240/sparsePregraph/inc/stdinc.h	2013-07-09 05:46:52.000000000 +0200
++++ SOAPdenovo2-src-r240-patched/sparsePregraph/inc/stdinc.h	2015-01-27 11:40:54.575665094 +0100
+@@ -32,6 +32,7 @@
+ #include <stddef.h>
+ #include <time.h>
+ #include <pthread.h>
++#include <unistd.h>
+ using namespace std;
+ 
+ 
+diff -uBw -r SOAPdenovo2-src-r240/standardPregraph/inc/stdinc.h SOAPdenovo2-src-r240-patched/standardPregraph/inc/stdinc.h
+--- SOAPdenovo2-src-r240/standardPregraph/inc/stdinc.h	2013-07-09 05:46:52.000000000 +0200
++++ SOAPdenovo2-src-r240-patched/standardPregraph/inc/stdinc.h	2015-01-27 11:40:49.112305427 +0100
+@@ -32,3 +32,4 @@
+ #include "types.h"
+ #include <aio.h>
+ #include <errno.h>
++#include <unistd.h>

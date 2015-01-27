@@ -1,0 +1,34 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=soapdenovo2
+pkgver=240
+pkgrel=1
+pkgdesc="large-size genome de-novo assembler"
+arch=('i686' 'x86_64')
+url="http://soap.genomics.org.cn/soapdenovo.html"
+license=('GPL3')
+depends=('gcc-libs' 'zlib')
+source=("$pkgname-$pkgver.tar.gz::http://downloads.sourceforge.net/project/soapdenovo2/SOAPdenovo2/src/r$pkgver/SOAPdenovo2-src-r$pkgver.tgz"
+        unistd.patch)
+md5sums=('2405631b8e8a09acc377fdb7aedb0e05'
+         'e5170bb92e2c258c86c067cc462bbe4d')
+
+prepare() {
+  cd $srcdir/SOAPdenovo2-src-r$pkgver
+
+  patch -Np1 -i $srcdir/unistd.patch
+}
+
+build() {
+  cd $srcdir/SOAPdenovo2-src-r$pkgver
+
+  make
+}
+
+package() {
+  cd $srcdir/SOAPdenovo2-src-r$pkgver
+
+  for i in SOAPdenovo-127mer SOAPdenovo-63mer ; do
+    install -Dm755 $i $pkgdir/usr/bin/$i
+  done
+}
