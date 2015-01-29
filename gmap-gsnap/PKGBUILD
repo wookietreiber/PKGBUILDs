@@ -1,0 +1,34 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=gmap-gsnap
+pkgver=2014_12_17
+pkgrel=1
+pkgdesc="Genomic Mapping and Alignment Program for mRNA and EST Sequences, and Genomic Short-read Nucleotide Alignment Program"
+arch=('i686' 'x86_64')
+url="http://research-pub.gene.com/gmap/"
+license=('custom')
+depends=('bzip2' 'perl' 'zlib')
+source=("http://research-pub.gene.com/gmap/src/gmap-gsnap-${pkgver//_/-}.v2.tar.gz")
+md5sums=('af27a47828b3a57ee6c0df67f9dc5255')
+
+build() {
+  cd $srcdir/gmap-${pkgver//_/-}
+
+  ./configure --prefix=/usr
+
+  make
+}
+
+check() {
+  cd $srcdir/gmap-${pkgver//_/-}
+
+  make check
+}
+
+package() {
+  cd $srcdir/gmap-${pkgver//_/-}
+
+  make DESTDIR=$pkgdir install
+
+  install -Dm644 COPYING $pkgdir/usr/share/licenses/$pkgname/LICENSE
+}
