@@ -1,0 +1,39 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=igraph
+pkgver=0.7.1
+pkgrel=1
+pkgdesc="library for creating and manipulating (un)directed graphs"
+arch=('i686' 'x86_64')
+url="http://igraph.org/c/"
+license=('GPL2')
+depends=('gmp' 'libxml2')
+source=("http://igraph.org/nightly/get/c/igraph-$pkgver.tar.gz")
+md5sums=('4f6e7c16b45fce8ed423516a9786e4e8')
+
+prepare() {
+  cd $srcdir/$pkgname-$pkgver
+
+  sed -e 's|CPPFLAGS="${OLDCFLAGS} ${XML2_CFLAGS}"|CPPFLAGS="${OLDCPPFLAGS} ${XML2_CFLAGS}"|' \
+      -i configure
+}
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+
+  ./configure --prefix=/usr
+
+  make
+}
+
+check() {
+  cd $srcdir/$pkgname-$pkgver
+
+  make check
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+
+  make DESTDIR=$pkgdir install
+}
