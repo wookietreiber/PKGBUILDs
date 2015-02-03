@@ -1,0 +1,22 @@
+diff -aur -x .git revbayes-git-pristine/src/core/moves/compound/ConjugateInverseWishartBrownianMove.cpp revbayes-git/src/core/moves/compound/ConjugateInverseWishartBrownianMove.cpp
+--- revbayes-git-pristine/src/core/moves/compound/ConjugateInverseWishartBrownianMove.cpp	2015-02-03 09:14:13.516853285 +0100
++++ revbayes-git/src/core/moves/compound/ConjugateInverseWishartBrownianMove.cpp	2015-02-03 09:06:44.899954528 +0100
+@@ -6,6 +6,7 @@
+ #include "ConjugateInverseWishartBrownianMove.h"
+ 
+ #include <cmath>
++#include <iomanip>
+ 
+ using namespace RevBayesCore;
+ 
+diff -aur -x .git revbayes-git-pristine/src/core/moves/compound/RateAgeBetaShift.cpp revbayes-git/src/core/moves/compound/RateAgeBetaShift.cpp
+--- revbayes-git-pristine/src/core/moves/compound/RateAgeBetaShift.cpp	2015-02-03 09:14:13.520186643 +0100
++++ revbayes-git/src/core/moves/compound/RateAgeBetaShift.cpp	2015-02-03 09:06:02.949601943 +0100
+@@ -6,6 +6,7 @@
+ #include "TreeUtilities.h"
+ 
+ #include <cmath>
++#include <iomanip>
+ 
+ using namespace RevBayesCore;
+ 
