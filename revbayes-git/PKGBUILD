@@ -1,7 +1,6 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
-_pkgname_base=revbayes
-pkgname=$_pkgname_base-git
+pkgname=revbayes-git
 
 pkgver=r3986.3536ad2
 pkgrel=1
