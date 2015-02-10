@@ -8,6 +8,7 @@ arch=('i686' 'x86_64')
 url="https://github.com/stephaneguindon/phyml/"
 license=('GPL2')
 depends=('openmpi')
+makedepends=('git')
 conflicts=('phyml-mpi')
 provides=('phyml-mpi')
 
