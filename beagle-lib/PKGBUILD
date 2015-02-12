@@ -10,7 +10,9 @@ arch=('i686' 'x86_64')
 url="https://code.google.com/p/beagle-lib/"
 license=('GPL3')
 depends=('libtool')
-optdepends=('cuda-toolkit' 'java-environment' 'libcl')
+optdepends=('cuda-toolkit: for CUDA support'
+            'java-environment: for Java support'
+            'libcl: for OpenCL support')
 makedepends=('svn')
 
 source=("$pkgname-$pkgver::svn+http://beagle-lib.googlecode.com/svn/tags/beagle_release_${pkgver//./_}")
