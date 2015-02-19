@@ -1,0 +1,31 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=
+pkgver=
+pkgrel=1
+pkgdesc=""
+arch=('i686' 'x86_64')
+url=""
+license=()
+depends=()
+source=("")
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+
+  ./configure --prefix=/usr
+
+  make
+}
+
+check() {
+  cd $srcdir/$pkgname-$pkgver
+
+  make check
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+
+  make DESTDIR=$pkgdir install
+}
