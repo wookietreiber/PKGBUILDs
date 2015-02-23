@@ -1,8 +1,8 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
 pkgname=bedtools
-pkgver=2.22.1
-pkgrel=2
+pkgver=2.23.0
+pkgrel=1
 pkgdesc='powerful toolset for genome arithmetic'
 arch=('i686' 'x86_64')
 url="https://github.com/arq5x/bedtools2"
@@ -10,7 +10,7 @@ license=('GPL2')
 depends=('bash' 'zlib')
 makedepends=('python2')
 source=("https://github.com/arq5x/bedtools2/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
-md5sums=('101c16371e0fd0bb88d55c206e1436d8')
+md5sums=('f7df3d931857f9bb8f79a69a364527d1')
 
 prepare() {
   cd $srcdir/${pkgname}2
@@ -34,7 +34,5 @@ check() {
 package() {
   cd $srcdir/${pkgname}2
 
-  for f in bin/* ; do
-    install -Dm755 $f $pkgdir/usr/bin/$(basename $f)
-  done
+  make prefix=/usr DESTDIR=$pkgdir install
 }
