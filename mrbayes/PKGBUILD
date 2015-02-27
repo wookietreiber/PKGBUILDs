@@ -1,8 +1,8 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
 pkgname=mrbayes
-pkgver=3.2.3
-pkgrel=2
+pkgver=3.2.4
+pkgrel=1
 pkgdesc="Bayesian inference and model choice across a wide range of phylogenetic and evolutionary models"
 arch=('i686' 'x86_64')
 url="http://mrbayes.sourceforge.net/index.php"
@@ -10,7 +10,7 @@ license=('GPL2')
 depends=('readline')
 conflicts=(mrbayes-mpi)
 source=("http://downloads.sourceforge.net/mrbayes/$pkgname-$pkgver.tar.gz")
-md5sums=('8f8aee63b6df21fb3728f62e963f2593')
+md5sums=('b315bc1946af0abfc3349abf22a4f175')
 
 prepare() {
   cd $srcdir/src
