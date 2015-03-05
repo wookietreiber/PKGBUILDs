@@ -1,0 +1,24 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=flash
+pkgver=1.2.11
+pkgrel=1
+pkgdesc="merge mates from fragments that are shorter than twice the read length "
+arch=('i686' 'x86_64')
+url="http://sourceforge.net/projects/flashpage/"
+license=('GPL3')
+depends=('zlib')
+source=("http://downloads.sourceforge.net/flashpage/FLASH-$pkgver.tar.gz")
+md5sums=('e4d355023a766afaaab2d62f912b605c')
+
+build() {
+  cd $srcdir/FLASH-$pkgver
+
+  make
+}
+
+package() {
+  cd $srcdir/FLASH-$pkgver
+
+  install -Dm755 flash $pkgdir/usr/bin/flash
+}
