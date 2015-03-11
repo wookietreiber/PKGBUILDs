@@ -1,0 +1,47 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=seqan
+pkgver=2.0.0
+pkgrel=1
+pkgdesc='C++ library of efficient algorithms and data structures for the analysis of sequences with the focus on biological data'
+arch=('i686' 'x86_64')
+url="http://www.seqan.de/"
+license=('custom')
+depends=('bash' 'bzip2' 'zlib')
+makedepends=('cmake')
+source=("http://packages.seqan.de/seqan-src/seqan-src-$pkgver.tar.gz")
+md5sums=('c59ef91b23194b9a63fbb387d496de00')
+
+prepare() {
+  cd $srcdir/$pkgname-$pkgname-v$pkgver
+
+  mkdir -p build
+
+  sed -e 's|#!/usr/bin/env python|#!/usr/bin/env python2|' \
+      -i $(grep -rl '/usr/bin/env python')
+}
+
+build() {
+  cd $srcdir/$pkgname-$pkgname-v$pkgver/build
+
+  cmake \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DPYTHON_EXECUTABLE=/usr/bin/python2 \
+    -DSEQAN_BUILD_SYSTEM=SEQAN_RELEASE \
+    ..
+
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgname-v$pkgver/build
+
+  make prefix=/usr DESTDIR=$pkgdir install
+
+  install -Dm644 $pkgdir/usr/share/doc/sak/man/sak.1 $pkgdir/usr/share/man/man1/sak.1
+  rm $pkgdir/usr/share/doc/sak/man/sak.1
+  rmdir $pkgdir/usr/share/doc/sak/man
+
+  install -Dm644 ../LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
+}
