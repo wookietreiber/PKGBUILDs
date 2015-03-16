@@ -1,7 +1,7 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
 pkgname=bowtie2
-pkgver=2.2.4
+pkgver=2.2.5
 pkgrel=1
 pkgdesc="ultrafast memory-efficient short read aligner"
 arch=('i686' 'x86_64')
@@ -9,7 +9,7 @@ url="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml"
 license=('custom')
 depends=('bash' 'python')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/BenLangmead/bowtie2/archive/v$pkgver.tar.gz")
-md5sums=('335907efb660b482bc9456ff50982c24')
+md5sums=('bf821eaeed35ffcf8d9724ff5eadd4c3')
 conflicts=('bowtie')
 
 build() {
