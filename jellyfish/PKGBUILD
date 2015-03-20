@@ -1,0 +1,26 @@
+# Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
+
+pkgname=jellyfish
+pkgver=2.2.0
+pkgrel=1
+pkgdesc="fast, memory-efficient counting of k-mers in DNA"
+arch=('i686' 'x86_64')
+url="http://www.genome.umd.edu/jellyfish.html"
+license=('GPL3')
+depends=('gcc-libs')
+source=("ftp://ftp.genome.umd.edu/pub/jellyfish/jellyfish-$pkgver.tar.gz")
+md5sums=('4f5b50bf939d2999a2d72db6058f4185')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+
+  ./configure --prefix=/usr
+
+  make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+
+  make DESTDIR=$pkgdir install
+}
