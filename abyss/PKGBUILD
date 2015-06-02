@@ -1,29 +1,21 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
 pkgname=abyss
-pkgver=1.5.2
+pkgver=1.9.0
 pkgrel=1
 pkgdesc="Assembly By Short Sequences - a de novo, parallel, paired-end sequence assembler"
 arch=('i686' 'x86_64')
 url="http://www.bcgsc.ca/platform/bioinfo/software/abyss"
 license=('custom')
-depends=('openmpi' 'boost-libs')
+depends=('make' 'openmpi' 'sqlite3')
 makedepends=('boost' 'sparsehash')
-checkdepends=('gtest')
 source=(https://github.com/bcgsc/abyss/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
-md5sums=('10d6d72d1a915e618d41a5cbbcf2364c')
-
-prepare() {
-  cd $srcdir/$pkgname-$pkgver
-
-  sed -e 's|AC_SUBST(GTEST_LIBS, "$LIBS")|AC_SUBST(GTEST_LIBS, "-lgtest_main -lgtest")|' \
-      -i configure.ac
-
-  autoreconf -fi
-}
+md5sums=('7b1b9f060dbae6c7fe815b1e50487c83')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
+
+  LDFLAGS+=" -L/usr/lib/openmpi"
 
   ./configure \
     --prefix=/usr \
