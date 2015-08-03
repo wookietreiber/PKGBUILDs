@@ -1,6 +1,6 @@
 # Maintainer: Christian Krause ("wookietreiber") <kizkizzbangbang@googlemail.com>
 
-pkgname=flash
+pkgname=flash-bio
 pkgver=1.2.11
 pkgrel=1
 pkgdesc="merge mates from fragments that are shorter than twice the read length "
